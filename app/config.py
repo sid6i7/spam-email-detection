@@ -4,4 +4,4 @@ GMAIL_APP_PASSWORD = "jxalknjodkvifrwv"
 
 STATIC_FOLDER = "static"
 
-MODEL_PATH = "static/model.joblib"
+MODEL_PATH = "app/static/model.joblib"

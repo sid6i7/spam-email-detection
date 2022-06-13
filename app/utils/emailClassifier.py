@@ -1,16 +1,21 @@
 from joblib import load
-import os, sys
-sys.path.insert(1, os.path.join(sys.path[0], '..'))
-from config import MODEL_PATH
-from sklearn.feature_extraction.text import CountVectorizer
+import sys
+sys.path.append('app')
+from config import *
 
 
 class Classifier:
 
     def __init__(self) -> None:
-        self.model = load(MODEL_PATH)
-        self.vectorizer = CountVectorizer()
+        model, vectorizer = load(MODEL_PATH)
+        self.model = model
+        self.vectorizer = vectorizer
     
     def predict_email(self, email):
-        counts = vec
-        prediction = self.model.pr
+        counts = self.vectorizer.transform(email)
+        prediction = self.model.predict(counts)
+
+        if prediction[0] == 1:
+            return 'Spam'
+        else:
+            return "Not spam"
