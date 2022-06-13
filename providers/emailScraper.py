@@ -7,7 +7,7 @@ import traceback
 class Scraper:
 
     def authorize(self):
-
+        """Authenticates with the gmail API"""
         try:
             mail = Imbox(
                 hostname = "imap.gmail.com",
@@ -19,6 +19,18 @@ class Scraper:
         except:
             print('error, could not authorize')
             print(traceback.print_exc())
+    
+
+    def get_unread_emails(self):
+        """Fetches all the unread emails and returns subject + body"""
+        emails = []
+        messages = self.mail.messages(unread = True)
+
+        for (uid, message) in messages:
+            email = message.subject + message.body['plain'][0]
+            emails.append(email)
+
+        return emails
         
 
 
