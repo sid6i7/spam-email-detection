@@ -25,9 +25,11 @@ class Scraper:
         """Fetches all the unread emails and returns subject + body"""
         emails = []
         messages = self.mail.messages(unread = True)
-
+        
         for (uid, message) in messages:
-            email = message.subject + message.body['plain'][0]
+            email = []
+            email.append(message.subject)
+            email.append(message.body['plain'][0])
             emails.append(email)
 
         return emails
