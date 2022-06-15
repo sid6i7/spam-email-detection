@@ -27,6 +27,7 @@ class Scraper:
         messages = self.mail.messages(unread = True)
         
         for (uid, message) in messages:
+            self.mail.mark_seen(uid)
             email = []
             email.append(message.subject)
             email.append(message.body['plain'][0])
